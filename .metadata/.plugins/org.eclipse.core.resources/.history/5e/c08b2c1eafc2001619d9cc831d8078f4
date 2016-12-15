@@ -1,0 +1,42 @@
+package schermata_avvio_server;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class schermata_avvio_server {
+	public static final String AVVIO = "Avvio";
+	public static final String PAUSA = "Pausa";
+	public static JButton avvio = new JButton(AVVIO);
+	public static JButton pausa = new JButton(PAUSA);
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Avvio server");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container container = frame.getContentPane();
+		pausa.setEnabled(false);
+		avvio.addActionListener(new Disable());
+		pausa.addActionListener(new Disable());
+		JPanel panel = new JPanel();
+		panel.add(avvio);
+		panel.add(pausa);
+		container.add(panel);
+		frame.pack();
+		frame.setVisible(true);
+	}
+}
+
+class Disable implements ActionListener {
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton tasto = (JButton) e.getSource();
+		if(tasto.getText() == schermata_avvio_server.AVVIO) {
+			schermata_avvio_server.pausa.setEnabled(true);
+			schermata_avvio_server.avvio.setEnabled(false);
+			System.out.println("Server avviato");
+		}else{
+			schermata_avvio_server.avvio.setEnabled(true);
+			schermata_avvio_server.pausa.setEnabled(false);
+			System.out.println("Server bloccato");
+		}
+	}
+}

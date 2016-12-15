@@ -1,0 +1,33 @@
+package database_studenti_server;
+
+import java.awt.Container;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Console {
+	
+	JTextArea textarea = new JTextArea(10,40);
+	JFrame frame;
+	
+	public Console() throws IOException {
+		frame = new JFrame("Server");
+		Container container = frame.getContentPane();
+		frame.setFocusable(false);
+		container.add(new JScrollPane(textarea));
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	public void scrivi(String testo) {
+		textarea.setText(textarea.getText()+testo+"\n");
+	}
+	
+	public void close() {
+		frame.setVisible(false);
+	}
+	
+}

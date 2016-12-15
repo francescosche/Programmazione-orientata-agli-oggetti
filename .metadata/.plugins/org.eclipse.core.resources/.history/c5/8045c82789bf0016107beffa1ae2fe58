@@ -1,0 +1,22 @@
+package client;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class client {
+	 public static void main(String args[]) throws IOException {
+	 	int number = 57;
+	 	Socket sock = new Socket("127.0.0.1", 2000);
+
+	 	OutputStream os = sock.getOutputStream();
+	 	InputStream is = sock.getInputStream();
+	 
+	 	PrintStream p = new PrintStream(os);
+	 	p.println(number);
+
+	 	Scanner sc1 = new Scanner(is);
+	 	int temp = sc1.nextInt();
+	 	System.out.println(temp);
+	 }
+	}

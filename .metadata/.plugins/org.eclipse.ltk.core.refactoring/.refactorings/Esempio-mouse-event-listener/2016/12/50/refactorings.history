@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename source folder &apos;Esempio-mouse-event-listener/src&apos; to &apos;mouse-event-listener&apos;&#x0A;- Original project: &apos;Esempio-mouse-event-listener&apos;&#x0A;- Original element: &apos;Esempio-mouse-event-listener/src&apos;&#x0A;- Renamed element: &apos;src&apos;" description="Rename source folder &apos;src&apos;" id="org.eclipse.jdt.ui.rename.source.folder" input="/src" name="mouse-event-listener" stamp="1481799093710" version="1.0"/>
+</session>

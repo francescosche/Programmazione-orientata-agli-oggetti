@@ -1,0 +1,78 @@
+package database_studenti_client;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class Login {
+	
+	PrintWriter writer = Client.writer;
+	static JFrame frame = new JFrame("Login");
+	Container container = frame.getContentPane();
+	JLabel titolo = new JLabel("Gestione studenti");
+	JLabel sottotitolo = new JLabel("Login");
+	JTextField username = new JTextField(20);
+	JPasswordField password = new JPasswordField(20);
+	JButton accedi = new JButton("Accedi");
+	
+	public Login() {
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		container.add(titolo);
+		container.add(sottotitolo);
+		container.setLayout(new GridLayout(7,1));
+		container.add(new JLabel("Username"));
+		container.add(username);
+		username.addKeyListener(new keyListener());
+		container.add(new JLabel("Password"));
+		container.add(password);
+		password.addKeyListener(new keyListener());
+		container.add(accedi);
+		accedi.addActionListener(new Listener());
+		container.setBackground(Color.WHITE);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	class Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+//			String[] dati = {username.getText(), new String(password.getPassword())};
+//			writer.println(dati);
+			writer.println("Dati inviati");
+			writer.flush();
+//			if(!(username.getText().equals("francesco")) || !(new String(password.getPassword()).equals("password"))) {
+//				JOptionPane.showMessageDialog(frame, "Username o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+//			}else{
+//				try {
+//					new Finestra();
+//				} catch (FileNotFoundException e1) {
+//					e1.printStackTrace();
+//				}
+//			}
+		}
+	}
+	
+	class keyListener implements KeyListener {
+		public void keyTyped(KeyEvent e) {}
+		public void keyPressed(KeyEvent e) {}
+		public void keyReleased(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+				accedi.doClick();
+			}
+		}
+	}
+	
+}

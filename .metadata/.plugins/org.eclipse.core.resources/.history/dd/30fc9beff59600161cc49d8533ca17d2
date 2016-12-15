@@ -1,0 +1,7 @@
+package es_3;
+
+public class scuole_elementari {
+	public static void main(String[] args) {
+		System.out.println("Hello world!");
+	}
+}

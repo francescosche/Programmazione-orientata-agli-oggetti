@@ -1,0 +1,52 @@
+package database_studenti_server;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Server implements Runnable{
+	
+	Console console = Main.console;
+	ServerSocket socket;
+	Socket client = null;
+	Set<Client> elenco_client = new HashSet<Client>();
+	
+	public void run() {
+		try {
+			socket = new ServerSocket(4444);
+		} catch (IOException e) {
+			console.scrivi("Errore nell'avvio del server");
+			System.exit(1);
+		}
+		console.scrivi("Server avviato");
+		console.scrivi("Attendo connessioni...");
+		while(true) {
+			try {
+				client = socket.accept();
+				Client nuovo_cliente = new Client(client, this);
+				Thread nuovo_client = new Thread(nuovo_cliente);
+				nuovo_client.start();
+				elenco_client.add(nuovo_cliente);
+			} catch (IOException e) {
+				console.scrivi("Chiudo il server...");
+				break;
+			}
+		}
+	}
+	
+	public void stop() throws IOException {
+		socket.close();
+		Iterator<Client> iteratore = elenco_client.iterator();
+		while(iteratore.hasNext()) {
+			Client cliente = iteratore.next();
+			if(!cliente.chiuso()) {
+				cliente.chiudi();
+			}
+		}
+		console.scrivi("Server chiuso correttamente");
+	}
+
+}

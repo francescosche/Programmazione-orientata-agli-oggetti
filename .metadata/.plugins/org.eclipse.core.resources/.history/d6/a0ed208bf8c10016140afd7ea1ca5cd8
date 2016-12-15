@@ -1,0 +1,41 @@
+package database_studenti_server;
+
+import java.awt.Container;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Console {
+	
+	JTextArea textarea;
+	JFrame frame;
+	
+	// costruttore che crea il pannello grafico della console
+	public Console() throws IOException {
+		// creo la finestra
+		frame = new JFrame("Server");
+		Container container = frame.getContentPane();
+		// creo la textarea che conterrà i messaggi
+		textarea = new JTextArea(10,40);
+		JScrollPane scroller = new JScrollPane(textarea);
+		container.add(scroller);
+		// avvio la grafica
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	// metodo che scrive all'interno della textarea dentro la console
+	public void scrivi(String testo) {
+		String testo_vecchio = textarea.getText();
+		textarea.setText(testo_vecchio+testo+"\n");
+	}
+	
+	// metodo che chiude la console
+	public void close() {
+		frame.setVisible(false);
+	}
+	
+}

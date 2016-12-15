@@ -1,0 +1,46 @@
+package es4_chat_server;
+
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class Server {
+	public static void start() {
+		
+	}
+	public static void stop() {
+		
+	}
+}
+
+class Finestra {
+	public static final String START = "Start"; 
+	public static final String STOP = "Stop"; 
+	public Finestra() {
+		JFrame frame = new JFrame("Avvio server");
+		Container container = frame.getContentPane();
+		JButton start = new JButton(START);
+		JButton stop = new JButton(STOP);
+		stop.setEnabled(false);
+		container.add(start);
+		container.add(stop);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	class Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JButton button = (JButton) e.getSource();
+			switch(button.getText()) {
+				case Finestra.START:
+					Server.start();
+					break;
+				case Finestra.STOP:
+					Server.stop();
+					break;
+			}
+		}
+	}
+}

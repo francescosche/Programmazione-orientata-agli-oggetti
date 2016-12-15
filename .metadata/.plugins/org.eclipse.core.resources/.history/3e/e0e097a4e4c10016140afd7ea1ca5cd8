@@ -1,0 +1,61 @@
+package es4_chat_server;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.ServerSocket;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class Server {
+	static ServerSocket socket;
+	public static void main(String[] args) {
+		new Finestra();
+	}
+	public static void start() {
+		try {
+			socket = new ServerSocket(4444);
+		} catch (IOException e) {
+			System.out.println("Avvio del server non riuscito");
+		}
+	}
+	public static void stop() {
+		try {
+			socket.close();
+		} catch (IOException e) {
+			System.out.println("Errore nella chiusura del server");
+		}
+	}
+}
+
+class Finestra {
+	public static final String START = "Start"; 
+	public static final String STOP = "Stop"; 
+	public Finestra() {
+		JFrame frame = new JFrame("Avvio server");
+		Container container = frame.getContentPane();
+		container.setLayout(new FlowLayout());
+		JButton start = new JButton(START);
+		JButton stop = new JButton(STOP);
+		stop.setEnabled(false);
+		container.add(start);
+		container.add(stop);
+		frame.pack();
+		frame.setVisible(true);
+	}
+	class Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JButton button = (JButton) e.getSource();
+			switch(button.getText()) {
+				case Finestra.START:
+					Server.start();
+					break;
+				case Finestra.STOP:
+					Server.stop();
+					break;
+			}
+		}
+	}
+}

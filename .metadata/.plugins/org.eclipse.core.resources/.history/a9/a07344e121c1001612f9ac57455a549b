@@ -1,0 +1,104 @@
+package lettura_scrittura_file;
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	static String nome_file;
+	static File file;
+	public static void main(String[] args) throws IOException {
+		boolean file_esistente = false;
+		while(!file_esistente) {
+			System.out.println("Inserisci il nome del file su cui lavorare:" );
+			Scanner scanner = new Scanner(System.in);
+			nome_file = scanner.next();
+			file = new File("Esempi/lettura_scrittura_file/"+nome_file);
+			if(file.exists()) {
+				System.out.println("Ottimo, il file è pronto all'uso");
+				file_esistente = true;
+				operazioni();
+			}else{
+				System.out.println("\nOps, il file non esiste..\nVuoi creare il file "+nome_file+"?");
+				String risposta_utente = scanner.next();
+				switch(risposta_utente.toLowerCase()) {
+					case "y":
+					case "yes":
+					case "s":
+					case "si":
+					case "yeah":
+					case "true":
+					case "1":
+						new PrintWriter(file);
+						System.out.println("\nOk, il file è stato creato");
+						file_esistente = true;
+						break;
+					case "n":
+					case "no":
+					case "nope":
+					case "false":
+					case "0":
+						System.out.println("");
+						break;
+				}
+			}
+			scanner.close();
+		}
+	}
+	static void operazioni() throws FileNotFoundException {
+		boolean uscita = false;
+		String scelta;
+		while(!uscita) {			Scanner scanner = new Scanner(System.in);
+
+			System.out.println("\nCosa vuoi fare?\n1. Lettura\n2. Scrittura\n3. Esci");
+			scelta = scanner.next();
+			switch(scelta.toLowerCase()) {
+				case "1":
+				case "l":
+				case "lettura":
+					lettura();
+					break;
+				case "2":
+				case "s":
+				case "scrittura":
+					scrittura();
+					break;
+				case "3":
+				case "e":
+				case "esci":
+					System.out.println("Ok, a presto! :)");
+					uscita = true;
+					break;
+				default:
+					System.out.println("Non riconosco la scelta effettuata, riprova");
+			}
+			scanner.close();
+			scanner.
+		}
+	}
+	static void lettura() {
+		try {
+			Scanner scanner = new Scanner(file);
+			if(scanner.hasNextLine()) {
+				System.out.println("——————————INIZIO FILE———————————");
+				while(scanner.hasNextLine())
+					System.out.println(scanner.nextLine());
+				System.out.print("———————————FINE FILE————————————\n");
+			}else{
+				System.out.println("Il file è ancora vuoto");
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Il file non esiste ancora");
+		}
+	}
+	static void scrittura() throws FileNotFoundException {
+		System.out.println("Ottimo, cosa vuoi sccrivere all'interno del file?");
+		PrintWriter file_aperto = new PrintWriter(file);
+		Scanner scaner = new Scanner(System.in);
+			String next = scaner.nextLine();
+			file_aperto.print(next);
+		
+		file_aperto.close();
+		scaner.close();
+	}
+}

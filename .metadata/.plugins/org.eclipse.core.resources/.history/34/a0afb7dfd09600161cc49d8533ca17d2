@@ -1,0 +1,45 @@
+package es_3;
+
+public class scuole_elementari {
+	public static void main(String[] args) {
+		
+	}
+}
+
+class Scuola {
+	// proprietà
+	nome (immutabile)
+	indirizzo (immutabile)
+	provveditorato (immutabile)
+	// operazioni
+	costruttore
+	get/set
+	// servizio
+	stampa
+}
+
+class Insegnante {
+	// proprietà
+	nome (immutabile)
+	cognome (immutabile)
+	annoVincita (immutabile)
+	scuola
+	// operazioni
+	costruttore
+	get/set
+	// servizio
+	stampa 
+}
+
+class Classe {
+	// proprietà
+	scuola (immutabile)
+	nome (immutabile)
+	insegnante
+	numAlunni
+	// operazioni
+	costruttore
+	get/set
+	// servizio
+	stampa
+}

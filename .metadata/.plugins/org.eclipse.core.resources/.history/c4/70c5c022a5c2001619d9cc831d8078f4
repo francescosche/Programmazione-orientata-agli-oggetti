@@ -1,0 +1,88 @@
+package Server;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	static ServerSocket server_socket;
+	static Socket socket;
+	static Map<String, String> prenotazioni;
+	static boolean loop;
+
+	public static void main(String[] args) {
+		try {
+			server_socket = new ServerSocket(9876);
+			System.out.println("Il server è stato avviato");
+			loop = true;
+			while(loop) {
+				socket = server_socket.accept();
+				Client client = new Client(socket);
+				Thread thread = new Thread(client);
+				thread.start();
+			}
+			server_socket.close();
+		} catch (IOException e) {
+			System.out.println("La porta sulla quale si sta creando il server è già occupata");
+		}
+	}
+}
+
+class Client implements Runnable {
+	
+	Socket socket;
+	InputStream dati_input;
+	Scanner scanner;
+	PrintWriter dati_output;
+	Map<String, String> prenotazioni = Main.prenotazioni;
+	
+	public Client(Socket socket) {
+		this.socket = socket;
+	}
+	
+	public void run() {
+		try {
+			dati_input = socket.getInputStream();
+			scanner = new Scanner(dati_input);
+//			String nome = scanner.nextLine();
+//			String cognome = scanner.nextLine();
+//			String posto = scanner.nextLine();
+			String nome = "Francesco";
+			String cognome = "Schettino";
+			String posto = "B13";
+//			dati_output = new PrintWriter(socket.getOutputStream());
+			if(prenota_posto(nome, cognome, posto)) {
+//				dati_output.println("Il posto è stato prenotato correttamente");
+				System.out.println("Il posto è stato prenotato correttamente");
+			}else{
+//				dati_output.println("Il posto non è disponibile o i dati inseriti sono errati, riprova");
+				System.out.println("Il posto non è disponibile o i dati inseriti sono errati, riprova");
+			}
+//			dati_output.close();
+			scanner.close();
+		} catch (IOException e) {
+			System.out.println("Nessun dato ricevuto dal client");
+		}
+	}
+	
+	public static boolean prenota_posto(String nome, String cognome, String posto) {
+		if(!(nome.length() > 1 && cognome.length() > 1 && posto.length() >= 2 && posto.length() <=3)) {
+			return false;
+		}else if(lettere_permesse.contains(posto.substring(0, 1))) {
+			
+		}
+//		TODO
+//		1) Verificare correttezza e completezza dei dati ricevuti
+//		2) Verificare la disponibilità del posto richiesto.
+//		3) Se il posto è disponibile, assegnare il posto all’utente e inviare un messaggio di
+//		accettazione.
+//		4) Se il posto non è disponibile, inviare un messaggio di rifiuto della prenotazione.
+		return true;
+	}
+	
+}

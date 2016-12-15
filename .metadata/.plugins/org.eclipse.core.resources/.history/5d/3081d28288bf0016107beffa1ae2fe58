@@ -1,0 +1,14 @@
+package server;
+
+public class server {
+    public static void main(String[] args) throws IOException{
+        int number, temp;
+        ServerSocket s = new ServerSocket(2000);
+        Socket ss = s.accept();
+        Scanner sc = new Scanner (ss.getInputStream());
+        number = sc.nextInt();
+        temp = number * 2 ;
+        PrintStream p = new PrintStream(ss.getOutputStream());
+        p.println(temp);
+    }   
+}

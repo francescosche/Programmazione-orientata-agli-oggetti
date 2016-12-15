@@ -1,0 +1,46 @@
+package database_studenti_server;
+
+import java.awt.Container;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.border.Border;
+
+public class Console {
+	
+	// credo il frame e la textarea che saranno accessibili anche dai metodi
+	private JTextArea textarea;
+	private JFrame frame;
+	
+	// costruttore che crea il pannello grafico della console
+	public Console() {
+		// creo la finestra
+		frame = new JFrame("Server");
+		Container container = frame.getContentPane();
+		// creo la textarea che conterrà i messaggi
+		textarea = new JTextArea(10,40);
+		textarea.setEditable(false);
+		textarea.setHighlighter(null);
+		textarea.setFont(new Font("Courier New"));
+		JScrollPane scroller = new JScrollPane(textarea);
+		container.add(scroller);
+		// avvio la grafica
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	// metodo che scrive all'interno della textarea dentro la console
+	public void scrivi(String testo_nuovo) {
+		String testo_vecchio = textarea.getText();
+		textarea.setText(testo_vecchio+testo_nuovo+"\n");
+	}
+	
+	// metodo che chiude la console
+	public void close() {
+		frame.setVisible(false);
+	}
+	
+}

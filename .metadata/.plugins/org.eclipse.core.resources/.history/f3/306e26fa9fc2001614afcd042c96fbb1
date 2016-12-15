@@ -1,0 +1,43 @@
+package Server;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Main {
+	
+	static ServerSocket server_socket;
+	static Socket socket;
+	
+	public static void main(String[] args) {
+		try {
+			server_socket = new ServerSocket(9876);
+			System.out.println("Il server è stato avviato");
+			while(true) {
+				socket = server_socket.accept();
+				new Client(socket);
+			}
+		} catch (IOException e) {
+			System.out.println("La porta sulla quale si sta creando il server è già occupata");
+		}
+	}
+	
+}
+
+class Client implements Runnable {
+	
+	Socket socket;
+	
+	public Client(Socket socket) {
+		this.socket = socket;
+	}
+	
+	public void run() {
+		try {
+			dati_input = socket.getInputStream();
+			scanner = new Scanner(dati_input);
+		} catch (IOException e) {
+		}
+	}
+	
+}

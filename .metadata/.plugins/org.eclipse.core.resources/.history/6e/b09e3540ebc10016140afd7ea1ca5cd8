@@ -1,0 +1,70 @@
+package database_studenti_server;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.Socket;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class FinestraStartStop {
+	
+	public static final String START = "Start"; 
+	public static final String STOP = "Stop"; 
+	JButton start = new JButton(START);
+	JButton stop = new JButton(STOP);
+	JFrame frame;
+	Console console;
+	
+	public FinestraStartStop() {
+		frame = new JFrame("Avvio server");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container container = frame.getContentPane();
+		container.setLayout(new FlowLayout());
+		stop.setEnabled(false);
+		start.addActionListener(new Listener());
+		stop.addActionListener(new Listener());
+		container.add(start);
+		container.add(stop);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	class Listener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			JButton button = (JButton) e.getSource();
+			switch(button.getText()) {
+				case START:
+					if(Server.start()) {
+						try {
+							console = new Console();
+							console.scrivi("Server avviato");
+							while(true) {
+								Server.ricevi();
+							}
+						} catch (IOException e1) {
+							console.scrivi("Nessun client trovato");
+						}
+					}else{
+						System.out.println("Errore nell'avvio del server");
+					}
+					start.setEnabled(false);
+					stop.setEnabled(true);
+					break;
+				case STOP:
+					if(Server.stop())
+						console.scrivi("Server bloccato");
+					else
+						console.scrivi("Errore nella chiusura del server");
+					start.setEnabled(true);
+					stop.setEnabled(false);
+					break;
+			}
+		}
+	}
+	
+}

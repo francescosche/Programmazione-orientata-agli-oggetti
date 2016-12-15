@@ -1,0 +1,34 @@
+package database_studenti_server;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Client implements Runnable {
+	
+	public static Console console = Main.console;
+	Socket socket;
+	
+	public Client(Socket socket, Server server) {
+		lettore = new Scanner(socket.getInputStream());
+		console.scrivi(lettore.nextLine());
+	}
+	
+	public void run() {
+		Scanner lettore;
+		boolean client_attivo = true;
+		while(client_attivo) {
+			try {
+				lettore = new Scanner(socket.getInputStream());
+				console.scrivi(lettore.nextLine());
+			} catch (IOException e) {
+				console.scrivi("Errore durante la ricezione di dati dal client.\nChiudo la connessione con il client.");
+				client_attivo = false;
+			}
+		}
+	}
+	
+	void invia() {
+		
+	}
+}

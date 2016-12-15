@@ -1,0 +1,78 @@
+package es_3;
+
+public class scuole_elementari {
+	public static void main(String[] args) {
+		
+	}
+}
+
+class Scuola {
+	public final String nome;
+	public final String indirizzo;
+	public final String provveditorato;
+	public Scuola(String nome, String indirizzo, String provveditorato) {
+		super();
+		this.nome = nome;
+		this.indirizzo = indirizzo;
+		this.provveditorato = provveditorato;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+	public String getProvveditorato() {
+		return provveditorato;
+	}
+	public void stampa() {
+		System.out.println("Nome: "+this.nome);
+		System.out.println("Indirizzo: "+this.indirizzo);
+		System.out.println("Provveditorato: "+this.provveditorato);
+	}
+}
+
+class Insegnante {
+	public final String nome;
+	public final String cognome;
+	public final int annoVincita;
+	public final Scuola scuola;
+	public Insegnante(String nome, String cognome, int annoVincita, Scuola scuola) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.annoVincita = annoVincita;
+		this.scuola = scuola;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public String getCognome() {
+		return cognome;
+	}
+	public int getAnnoVincita() {
+		return annoVincita;
+	}
+	public Scuola getScuola() {
+		return scuola;
+	}
+	public void stampa() {
+		System.out.println("Nome: "+nome);
+		System.out.println("Cognome: "+cognome);
+		System.out.println("Anno di vincita: "+annoVincita);
+		System.out.println("Scuola: "+scuola);
+	}
+}
+
+class Classe {
+	// proprietà
+	scuola (immutabile)
+	nome (immutabile)
+	insegnante
+	numAlunni
+	// operazioni
+	costruttore
+	get/set
+	// servizio
+	stampa
+}

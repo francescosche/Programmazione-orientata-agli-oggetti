@@ -1,0 +1,17 @@
+package Client;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Nome: ");
+		String nome = scanner.nextLine();
+		System.out.print("Cognome: ");
+		String cognome = scanner.nextLine();
+		System.out.print("Posto: ");
+		String posto = scanner.nextLine();
+		scanner.close();
+		Socket socket = new Socket(9876);
+	}
+}

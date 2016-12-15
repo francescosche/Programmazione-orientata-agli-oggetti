@@ -1,0 +1,29 @@
+package vendita_biglietti;
+import java.util.*;
+
+public class Utente {
+	private final String nome;
+	private final String cognome;
+	private final String citta;
+	Set<Biglietto> biglietti = new HashSet<Biglietto>();
+	
+	public Utente(String nome, String cognome, String citta) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.citta = citta;
+	}
+	
+	public void addBiglietto(Biglietto biglietto) {
+		biglietti.add(biglietto);
+	}
+	
+	public Set<Biglietto> getBiglietti() {
+		return biglietti;
+	}
+
+	@Override
+	public String toString() {
+		return nome+" "+cognome+" di "+citta;
+	}
+}

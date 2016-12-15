@@ -1,0 +1,50 @@
+package database_studenti_client;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Studente {
+	String nome;
+	String cognome;
+	String  matricola;
+	String anno_accademico;
+	
+	// costruttore della classe studente
+	public Studente(String nome, String cognome, String matricola, String anno_accademico) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.matricola = matricola;
+		this.anno_accademico = anno_accademico;
+	}
+	
+	// metodo che restituisce l'elenco degli studenti nel database
+	static Set<Studente> elenco_studenti() throws FileNotFoundException {
+		Set<Studente> studenti = new HashSet<Studente>();
+		Scanner lettore;
+		String percorso = "Esempi/database_studenti_server/database.dat";
+		File database = new File(percorso);
+		if(!database.exists()) {
+			PrintWriter nuovo_file = new PrintWriter(percorso);
+			nuovo_file.close();
+		}
+		lettore = new Scanner(database);
+		while(lettore.hasNextLine()){
+			String riga = lettore.nextLine();
+			String[] parti = riga.split(",");
+			Studente studente = new Studente(parti[0], parti[1], parti[2], parti[3]);
+			studenti.add(studente);
+		}
+		lettore.close();
+		return studenti;
+	}
+	
+	// override del metodo toString() per stampare correttamente uno studente
+	public String toString() {
+		return nome+" "+cognome+" "+matricola+" "+anno_accademico;
+	}
+	
+}

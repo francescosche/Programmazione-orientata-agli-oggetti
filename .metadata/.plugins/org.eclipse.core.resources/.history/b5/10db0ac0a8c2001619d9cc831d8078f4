@@ -1,0 +1,20 @@
+package Client;
+
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Nome: ");
+		String nome = scanner.nextLine();
+		System.out.print("Cognome: ");
+		String cognome = scanner.nextLine();
+		System.out.print("Posto: ");
+		String posto = scanner.nextLine();
+		scanner.close();
+		Socket socket = new Socket("127.0.0.1", 9876);
+		PrintWriter conn = new PrintWriter(socket.getOutputStream()); 
+	}
+}

@@ -1,0 +1,27 @@
+package client;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class client {
+	 public static void main(String args[]) throws IOException {
+	 	int number = 58;
+	 	Socket sock = new Socket("188.213.173.201", 4444);
+
+	 	OutputStream os = sock.getOutputStream();
+	 	InputStream is = sock.getInputStream();
+	 
+	 	PrintWriter p = new PrintWriter(os);
+	 	p.println("Schettino");
+	 	p.println("Francesco");
+	 	p.println("1713519");
+	 	p.println("schettino.francesco@live.it");
+
+	 	os.flush()
+	 	
+	 	Scanner sc1 = new Scanner(is);
+	 	int temp = sc1.nextInt();
+	 	System.out.println(temp);
+	 }
+	}

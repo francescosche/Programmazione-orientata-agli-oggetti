@@ -1,0 +1,11 @@
+package database_studenti_server;
+
+import java.io.IOException;
+
+public class Main {
+	Console console;
+	public static void main(String[] args) throws IOException {
+		console = new Console();
+		new FinestraStartStop();
+	}
+}

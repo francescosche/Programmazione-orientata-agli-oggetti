@@ -1,0 +1,19 @@
+package database_studenti_server;
+
+import java.io.IOException;
+
+public class Main {
+	
+	static Console console;
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		console = new Console();
+		new FinestraStartStop();
+		for(int i=0; i<1000; i++) {
+			Thread.sleep(1);
+			String testo = Server.socket.isClosed() ? "Server chiuso" : "Server aperto";
+			console.scrivi(testo);
+		}
+	}
+	
+}

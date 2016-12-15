@@ -1,0 +1,62 @@
+package Server;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Main {
+	
+	static ServerSocket server_socket;
+	static Socket socket;
+	
+	public static void main(String[] args) {
+		try {
+			server_socket = new ServerSocket(9876);
+			System.out.println("Il server è stato avviato");
+			while(true) {
+				socket = server_socket.accept();
+				new Client(socket);
+			}
+		} catch (IOException e) {
+			System.out.println("La porta sulla quale si sta creando il server è già occupata");
+		}
+	}
+	
+}
+
+class Client implements Runnable {
+	
+	Socket socket;
+	InputStream dati_input;
+	Scanner scanner;
+	
+	public Client(Socket socket) {
+		this.socket = socket;
+	}
+	
+	public void run() {
+		try {
+			dati_input = socket.getInputStream();
+			scanner = new Scanner(dati_input);
+			String nome = scanner.nextLine();
+			String cognome = scanner.nextLine();
+			String posto = scanner.nextLine();
+			
+			prenota_posto();
+			
+		} catch (IOException e) {
+		}
+	}
+	
+	public static int prenota_posto(String nome, String cognome, String posto) {
+//		TODO
+//		1) Verificare correttezza e completezza dei dati ricevuti
+//		2) Verificare la disponibilità del posto richiesto.
+//		3) Se il posto è disponibile, assegnare il posto all’utente e inviare un messaggio di
+//		accettazione.
+//		4) Se il posto non è disponibile, inviare un messaggio di rifiuto della prenotazione.
+	}
+	
+}

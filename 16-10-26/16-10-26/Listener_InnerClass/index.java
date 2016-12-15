@@ -1,0 +1,39 @@
+package Listener_InnerClass;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class index {
+	public static void main(String[] args) {
+		System.out.println("Listener come inner class");
+		new Window();
+	}
+}
+
+class Window {
+	JTextField testo = new JTextField(20);
+	public Window() {
+		JFrame principale = new JFrame("Hola");
+		Container contenuto = principale.getContentPane();
+		principale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton tasto = new JButton("Cliccami");
+		tasto.addActionListener(new Listener());
+		
+		JPanel panel = new JPanel();
+		panel.add(tasto);
+		panel.add(testo);
+		
+		contenuto.add(panel);
+		
+		principale.pack();
+		principale.setVisible(true);
+	}
+	class Listener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(testo.getText());
+		}
+	}
+}

@@ -1,0 +1,12 @@
+package es_3;
+
+public class Classe {
+	public final Scuola scuola;
+	public final String nome;
+	public Insegnante insegnante;
+	public int numAlunni;
+	/*
+	// servizio
+	stampa
+	*/
+}

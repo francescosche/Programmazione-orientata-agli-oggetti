@@ -1,0 +1,54 @@
+package thread;
+
+public class join {
+	public static void main(String[] args) throws InterruptedException {
+		System.out.println("solo_run():");
+		Thread.sleep(2000);
+		solo_run();
+		System.out.println("solo_start():");
+		Thread.sleep(2000);
+		solo_start();
+		System.out.println("solo_join():");
+		Thread.sleep(2000);
+		solo_join();
+		System.out.println("start_e_join():");
+		Thread.sleep(2000);
+		start_e_join();
+	}
+	static void solo_run() {
+		joinable s1 = new joinable();
+		System.out.println("Avvio");
+		s1.run();
+		System.out.println("Finita\n");
+	}
+	static void solo_start() throws InterruptedException {
+		joinable s2 = new joinable();
+		Thread t2 = new Thread(s2);
+		System.out.println("Avvio");
+		t2.start();
+		System.out.println("Finita\n");
+	}
+	static void solo_join() throws InterruptedException {
+		joinable s2 = new joinable();
+		Thread t2 = new Thread(s2);
+		System.out.println("Avvio");
+		t2.join();
+		System.out.println("Finita\n");
+	}
+	static void start_e_join() throws InterruptedException {
+		joinable s3 = new joinable();
+		Thread t3 = new Thread(s3);
+		System.out.println("Avvio");
+		t3.start();
+		t3.join();
+		System.out.println("Finita\n");
+	}
+}
+
+class joinable implements Runnable {
+	public void run() {
+		for(int i=0; i<5; i++) {
+			System.out.println(i+1);
+		}
+	}
+}
