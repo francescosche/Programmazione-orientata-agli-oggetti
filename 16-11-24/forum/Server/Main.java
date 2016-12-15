@@ -1,0 +1,18 @@
+package Server;
+
+import java.awt.Container;
+
+import javax.swing.JFrame;
+
+public class Main {
+	public static void main(String[] args) {
+		new Finestra();
+	}
+}
+
+class Finestra {
+	public Finestra() {
+		JFrame frame = new JFrame("Avvio server");
+		Container container = frame.getContentPane();
+	}
+}
